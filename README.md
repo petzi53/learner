@@ -14,3 +14,4 @@ This following references to necessary ressources demonstrate that this is not a
 * learnr/shiny still uses [bootstrap 3](https://getbootstrap.com/docs/3.3/), but an upgrade to [bootstrap version 4](https://getbootstrap.com/) is already under discussion.
 * To use essential web technologies (HTML5, CSS and JavaScript) is the [MDN](https://developer.mozilla.org/en-US/) website the autoritative reference.
 * Packages for submission correctness tests for R exercises arfe [checkr](https://github.com/dtkaplan/checkr) and [testwhat](https://datacamp.github.io/testwhat/).
+* Very useful are also the example github sites like [learnr examples](https://rstudio.github.io/learnr/examples.html) and the [shiny galery](https://shiny.rstudio.com/gallery/). There exist at the near bottom of [Shiny Use Cases](https://www.rstudio.com/products/shiny/shiny-user-showcase/) even a section on Shiny Apps for Teaching.
