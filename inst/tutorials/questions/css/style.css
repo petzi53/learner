@@ -1,0 +1,85 @@
+
+/*   background-image: url("../images/caution.png"); */
+
+/* using Bootstrap 4 has smaller font-size: 1rem,
+   Bootstrap 3 has 14px
+body {
+  font-size: 1.4rem !important;
+}
+*/
+
+
+:root {
+  --primary:        #027BFF;
+  --secondary:      #6C757D;
+  --success-bg:     #dff0d8;
+  --success-fg:     #468847;
+  --stop:           #DC3545;
+  --stop-bg:        #f2dede;
+  --stop-fg:        #b94a48;
+  --warning-bg:     #fcf8e3;
+  --warning-fg:     #d1b37c;
+  --info:           #25A2B8;
+  --info-bg:        #D9EDF7;
+  --info-fg:        #317EAC;
+}
+
+.successbox {
+  padding: 1em 1em 1em 4em;
+  margin-bottom: 10px;
+  border: 2px solid var(--success-fg);
+  border-radius: 10px;
+  background: var(--success-bg) 5px center/3em no-repeat;
+  background-image: url("../icons/checkmark.png");
+  background-repeat: no-repeat;
+}
+
+.infobox {
+  padding: 1em 1em 1em 4em;
+  margin-bottom: 10px;
+  border: 2px solid var(--info-fg);
+  border-radius: 10px;
+  background: var(--info-bg) 5px center/3em no-repeat;
+  background-repeat: no-repeat;
+  background-image: url("../images/info.png");
+}
+
+.warningbox {
+  padding: 1em 1em 1em 4em;
+  margin-bottom: 10px;
+  border: 2px solid var(--warning-fg);
+  border-radius: 10px;
+  background: var(--warning-bg) 5px center/3em no-repeat;
+  background-repeat: no-repeat;
+  background-image: url("../images/warning.png");
+}
+
+.stopbox {
+  padding: 1em 1em 1em 4em;
+  margin-bottom: 10px;
+  border: 2px solid var(--stop-fg);
+  border-radius: 10px;
+  background: var(--stop-bg) 5px center/3em no-repeat;
+  background-repeat: no-repeat;
+  background-image: url("../images/stop.png");
+}
+
+
+.float-right {
+    float: right;
+    width: 25%;
+    height: 25%;
+}
+
+.float-left {
+    float: left;
+    width: 25%;
+    height: 25%;
+}
+
+div.hanging-indent {
+text-indent: -28px;
+padding-left: 28px;
+}
+
+

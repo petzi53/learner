@@ -1,0 +1,178 @@
+---
+title: "Name of the Learnr Tutorial"
+author: "[Peter Baumgartner](https://github.com/petzi53)"
+date: "Last updated: `r format(Sys.time(), '%d %B, %Y')`"
+bibliography: "www/references.bib"
+link-citations: true
+editor_options:
+  markdown:
+    wrap: 72
+    references: 
+      location: block
+    canonical: true
+
+output: 
+    learnr::tutorial:
+        progressive: true
+        allow_skip: true
+        theme: "cerulean"
+        css: "css/style.css"
+runtime: shiny_prerendered
+---
+
+```{r setup, echo=F, message=F, warning=F, include=F}
+library(tidyverse)
+library(learnr)
+library(gradethis)
+library(usethis)
+
+```
+
+## Standard examples
+
+### No retry
+
+The next example works because `allow_retry = FALSE` (default value).
+There is no possibility give correct feedback in every case if
+`allow_retry = TRUE`.
+
+```{r where-am-i}
+question("Where are you right now? (select ALL that apply)",
+  answer("Planet Earth", correct = TRUE),
+  answer("Pluto"),
+  answer("At a computing device", correct = TRUE),
+  answer("In the Milky Way", correct = TRUE),
+  incorrect = "Incorrect. You're on Earth, in the Milky Way, at a computer."
+)
+```
+
+### No nuanced feedback
+
+The following example does not allow a partly correct answers, e.g.
+answering three of four topping correctly. Besides it gives wrong
+feedback if correct and wrong topics are chosen.
+
+```{r checkbox-example}
+question(
+  "Select all the toppings that belong on a Margherita Pizza:",
+  answer("tomato", correct = TRUE),
+  answer("mozzarella", correct = TRUE),
+  answer("basil", correct = TRUE),
+  answer("extra virgin olive oil", correct = TRUE),
+  answer("pepperoni", message = "Great topping! ... just not on a Margherita Pizza"),
+  answer("onions"),
+  answer("bacon"),
+  answer("spinach"),
+  random_answer_order = FALSE,
+  allow_retry = TRUE,
+  try_again = "Be sure to select all toppings!"
+)
+```
+
+You cannot save the feedback by replacing the try_again to "Be sure to
+select only the correct toppings!" or other sentences. In some
+combination it will turn out wrong.
+
+## Interpretation in context
+
+Taken from [Regression modeling: 4 - Interpreting regression
+models](https://openintro.shinyapps.io/ims-03-model-04/#section-your-turn)
+and adapted to Multiple Choice question
+
+A politician interpreting the relationship between poverty rates and
+high school graduation rates implores his constituents:
+
+> If we can lower the poverty rate by 59%, we'll double the high school
+> graduate rate in our county (i.e. raise it by 100%).
+
+```{r mc2}
+question("Which of the following mistakes in interpretation has the politician made?",
+  answer("Implying that the regression model establishes a cause-and-effect relationship.", correct = TRUE),
+  answer("Switching the role of the response and explanatory variables.", correct = TRUE),
+  answer("Confusing percentage change with percentage point change.", correct = TRUE),
+  answer("None of the above.", correct = FALSE),
+  incorrect = "Only partly correct: The politician has made more mistakes in interpreting the relationship.",
+  allow_retry = TRUE
+)
+```
+
+### Another version
+
+This version has a additional incorrect answer options
+
+```{r mc2a}
+question("Which of the following mistakes has the politician made?",
+  answer("Implying that the regression model establishes a cause-and-effect relationship.", correct = TRUE),
+  answer("The politician does not interpret, he just reports the facts.", correct = FALSE),
+  answer("Switching the role of the response and explanatory variables.", correct = TRUE),
+  answer("Confusing percentage change with percentage point change.", correct = TRUE),
+  answer("None of the above.", correct = FALSE),
+  incorrect = "Only partly correct: The politician has made more mistakes in interpreting the relationship.",
+  allow_retry = TRUE
+)
+```
+
+## Misc Tests
+
+```{r checkbox, echo = FALSE}
+question(
+  "Select all the toppings that belong on a Margherita Pizza:",
+  answer("tomato", correct = TRUE,   message = "Partly correct"),
+  answer("mozzarella", correct = TRUE),
+  answer("basil", correct = TRUE),
+  answer("extra virgin olive oil", correct = TRUE),
+  answer("pepperoni", message = "Great topping! ... just not on a Margherita Pizza"),
+  answer("onions"),
+  answer("bacon"),
+  answer("spinach"),
+  try_again = "Be sure to select all toppings!",
+
+  random_answer_order = FALSE,
+  allow_retry = TRUE
+
+)
+```
+
+```{r radio, echo = FALSE}
+question(
+  "Is this a good question?",
+  answer("yes", correct = TRUE),
+  answer("no", message = 'This is a good question.'),
+  allow_retry = TRUE,
+  try_again = "Be sure to select all toppings!"
+)
+```
+
+```{r options, echo = FALSE}
+question(
+  "How many parameters are supplied in this question?",
+  answer("1", message = "Really?"),
+  answer("2"),
+  answer("3"),
+  answer("15", correct = TRUE, message = "Custom message here."),
+  type = "learnr_text",
+  correct = "Question is correct!",
+  message = "Reminder to do something after answering the question...",
+  post_message = "Message to be displayed after the correct answer is found",
+  submit_button = "Submit Answer Here!",
+  try_again_button = "Try Again Here!",
+  allow_retry = TRUE,
+  random_answer_order = TRUE,
+  options = list(
+    placeholder = "The answer is '15'",
+    trim = TRUE
+  )
+)
+```
+
+```{r format-question}
+ex_question <- question("What number is the letter A in the alphabet?",
+  answer("8"),
+  answer("14"),
+  answer("1", correct = TRUE),
+  answer("23"),
+  incorrect = "See [here](https://en.wikipedia.org/wiki/English_alphabet) and try again.",
+  allow_retry = TRUE
+)
+
+```

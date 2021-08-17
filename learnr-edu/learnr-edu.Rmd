@@ -1,0 +1,56 @@
+---
+title: "Title"
+author: "[Peter Baumgartner](https://github.com/petzi53)"
+date: "Last updated: `r format(Sys.time(), '%d %B, %Y')`"
+output:
+  html_document:
+    css: style.css
+    theme: united
+    toc: true
+    toc_float:
+      collapsed: false
+      smooth_scroll: true
+    toc_depth: 3
+    number_sections: false
+    code_folding: hide
+    code_download: true
+bibliography: references.bib
+link-citations: true
+---
+
+```{r setup}
+library(tidyverse)
+library(gizmo)
+library(yaml)
+
+```
+
+
+# Get tutorial data
+
+```{r get-tutorial-data}
+if (!file.exists(here::here("R/sysdata.rda"))) {
+  library(adventr)
+  adventr <- learnr::available_tutorials(package = "adventr")
+  tutorial_data <- get_tutorial_files(directory, user, repo, branch, file_extensions)
+  usethis::use_data(tutorial_data, adventr, internal = TRUE)
+} else {
+  load(here::here("R/sysdata.rda"))
+}
+```
+
+```{r get-yaml-data}
+yaml_regex <- "(?s)---\n(.*?)---\n"
+for (i in 1:nrow(tutorial_data)) {
+  res <- stringr::str_match(tutorial_data$content[i], yaml_regex)
+  yaml_list <-  yaml::read_yaml(text = res[, 2])
+  tutorial_data$author[i] = yaml_list$author
+  tutorial_data$title[i] = yaml_list$title
+  tutorial_data$description[i] = yaml_list$description
+}
+```
+
+```{r}
+get_yaml_data()
+```
+
