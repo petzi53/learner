@@ -84,7 +84,7 @@ github_read_files <- function(file_name,
     return(readr::read_file(source_path))
 }
 
-
+################################################################################
 
 tutorial_urls = c("https://github.com/profandyfield/adventr",
                   "https://github.com/profandyfield/discovr")
@@ -94,6 +94,3 @@ adventr_tbl <- get_tutorial_files(tutorial_urls[1])
 discovr_tbl <- get_tutorial_files(tutorial_urls[2])
 usethis::use_data(adventr_tbl, discovr_tbl,
                   overwrite = TRUE, compress = "xz", version = 3)
-
-
-
