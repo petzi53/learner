@@ -4,3 +4,4 @@
 ^learnr-edu$
 ^\.Rproj\.user$
 
+^data-raw$
